@@ -32,9 +32,8 @@ jobs:
 
     - name: Check code coverage
       run: |
-        coverage=$(grep -Po '(?<=<counter type="INSTRUCTION" missed="\d+" covered=")\d+(?=")' target/site/jacoco/jacoco.xml)
-        total_missed=$(grep -Po '(?<=<counter type="INSTRUCTION" missed=")\d+(?=")' target/site/jacoco/jacoco.xml)
-        total_covered=$(grep -Po '(?<=<counter type="INSTRUCTION" covered=")\d+(?=")' target/site/jacoco/jacoco.xml)
+        total_missed=$(sed -n 's/.*<counter type="INSTRUCTION" missed="\([0-9]*\)" .*/\1/p' target/site/jacoco/jacoco.xml | awk '{s+=$1} END {print s}')
+        total_covered=$(sed -n 's/.*<counter type="INSTRUCTION" covered="\([0-9]*\)" .*/\1/p' target/site/jacoco/jacoco.xml | awk '{s+=$1} END {print s}')
         total=$((total_missed + total_covered))
         coverage_percentage=$((total_covered * 100 / total))
         echo "Code coverage is $coverage_percentage%"
