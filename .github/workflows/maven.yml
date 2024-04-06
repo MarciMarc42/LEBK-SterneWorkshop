@@ -34,7 +34,8 @@ jobs:
       run: |
         # Assuming JaCoCo is used for code coverage
         # Adjust the path to your coverage report accordingly
-        coverage=$(grep -Po '(?<=<counter type="INSTRUCTION" covered=")\d+(?=")' target/site/jacoco/jacoco.xml)
+        pwd
+        coverage=$(grep -Po '(?<=<counter type="INSTRUCTION" covered=")\d+(?=")' /target/site/jacoco/jacoco.xml)
         if [ "$coverage" -lt 70 ]; then
           echo "Code coverage is below 70% ($coverage%)"
           exit 1
