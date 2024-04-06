@@ -62,14 +62,14 @@ workshop-project-java-maven/
 # Writing Unit Tests
 In this workshop, we will focus on writing unit tests using JUnit, the most popular testing framework for Java. Unit tests are written to verify the behavior of individual units or components of your code.
 
-###To write a unit test:
+### To write a unit test:
 
 1. Create a test class in the src/test/java directory.
 2. Use the @Test annotation from JUnit to mark methods as test cases.
 3. Write test methods to verify the behavior of your code under different scenarios.
 4. Run the tests using Maven.
 
-#Running Tests
+# Running Tests
 To run the unit tests, execute the following Maven command in the project directory:
 
   ```bash
