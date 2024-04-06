@@ -33,3 +33,13 @@ jobs:
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+
+    - name: Check code coverage
+      run: |
+        # Assuming JaCoCo is used for code coverage
+        # Adjust the path to your coverage report accordingly
+        coverage=$(grep -Po '(?<=<counter type="INSTRUCTION" covered=")\d+(?=")' target/site/jacoco/jacoco.xml)
+        if [ "$coverage" -lt 70 ]; then
+          echo "Code coverage is below 70% ($coverage%)"
+          exit 1
+        fi
