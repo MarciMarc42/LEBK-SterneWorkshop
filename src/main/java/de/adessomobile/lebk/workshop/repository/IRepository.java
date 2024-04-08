@@ -4,7 +4,7 @@ import de.adessomobile.lebk.workshop.model.Student;
 
 import java.util.List;
 
-public interface IStudentRepository {
+public interface IRepository {
     Student save(Student student);
 
     List<Student> findAll();
